@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta>
+</meta>
+<meta charset="UTF-8">
+<title>Running Statistics</title>
+<link rel="stylesheet" href="./css/bootstrap.min.css" media="screen" type="text/css"></style>
+<link rel="stylesheet" href="./css/main.css" media="screen" type="text/css"></style>
+</head>
+<body>
+	<div id="graph">
+	</div>
+	<div class="menu">
+		<div class="button grid-button rearrange">
+				<span class="grid"></span>
+		</div>
+		<h1 class="menuTitle">Trend Views</h1>
+		<div class="dataViews container">
+			<div class="dataView col-md-4 col-sm-12 mile" data="mile">
+				<h1>
+					Mile Splits	<br> <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+				</h1>
+			</div>
+			<div class="dataView col-md-4 col-sm-12 pace" data="pace">
+				<h1>
+					Duration v. Distance	<br> <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
+				</h1>
+			</div>
+			<div class="dataView col-md-4 col-sm-12 trends" data="trends">
+				<h1>
+					Time	<br> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+				</h1>
+			</div>
+		</div>
+	</div>
+	<div id="activityModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h4 class="modal-title">
+						/h4&gt;
+					</h4>
+				</div>
+				<div class="modal-body">
+					<table class="table table-striped table-hover table-bordered">
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+				<div class="modal-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://codepen.io/assets/libs/fullpage/jquery.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
+	<script src="./js/d3.min.js"></script>
+	<script src="./js/d3.tip.js"></script>
+	<script src="./js/regression.js"></script>
+	<script src="./js/main.js"></script>
+	<script src="./js/paceTrend.js"></script>
+	<script src="./js/mileTrend.js"></script>
+	<script src="./js/common.js"></script>
+</body>
+</html>
