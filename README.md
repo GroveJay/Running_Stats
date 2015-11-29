@@ -21,7 +21,7 @@ In your strava profile > Settings > My API Application you can set up an applica
 After having all of these set in the python/main.py, you can run the script to produce data.json, a file containing all the details of your strava runs. Putting this file into the /js folder will allow the webview to run.
 
 ### webview ###
-The webview contains three distinct views for your running data.
+The webview contains three distinct views for your running data. These views are based around a date and goal pace defined at the top of common.js. The date determines what run data to filter to and the goal pace determines the coloring of the run data in each view.
 ##### Mile Splits #####
 This visualizes each run's individual splits. Hovering over a split will highlight other splits on runs that had that split time for that mile. Clicking on a split highlights all splits for the included runs listed at the bottom.
 

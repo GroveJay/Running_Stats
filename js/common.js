@@ -1,5 +1,5 @@
 var targetPace = 423.664122
-
+var startDate = "15-07-03"
 var stravaUrl = "https://www.strava.com/activities/"
 
 function secondsToString (seconds){
@@ -206,7 +206,7 @@ $.getJSON("./js/data.json", function(){}).done(function(data){
   runData = data;
 
 	runData = runData.filter(function(a){
-    return parseDate(a.date) > parseDate("15-07-03");
+    return parseDate(a.date) > parseDate(startDate);
   });
 	
 	runData = runData.sort(function(a, b){
