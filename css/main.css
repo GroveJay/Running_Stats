@@ -1,0 +1,271 @@
+html, body{
+  height:100%;
+  margin: 0;
+  padding: 0;
+}
+#graph{
+  margin: 0 auto;
+  position: fixed;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+}
+.axis path, .axis line
+{
+  fill: none;
+  stroke: #777;
+  shape-rendering: crispEdges;
+}
+.axis text
+{
+  font-family: 'Helvetica';
+  font-size: 13px;
+}
+.x.axis path {
+  stroke: #000;
+}
+
+.x.axis line {
+  stroke: #000;
+  stroke-opacity: .5;
+}
+
+.y.axis line {
+  stroke: #AAA;
+}
+
+line.pace{
+  stroke: #CCF;
+}
+
+path.line {
+  fill: none;
+  stroke: #000;
+  stroke-width: .5px;
+}
+
+.runs{
+  opacity: .9;
+}
+
+.runs.active{
+  opacity: .55;
+}
+
+.positive
+{
+  fill: hsla(156, 37%, 55%, 1)
+}
+.negative
+{
+  fill: hsla(1, 37%, 55%, 1)
+}
+
+.mileLine
+{
+  fill: none;
+}
+
+.mileLine.positive{
+  stroke: hsla(156, 37%, 55%, 1);
+}
+
+.mileLine.negative{
+  stroke: hsla(1, 37%, 55%, 1);
+}
+
+.paceLine{
+  stroke: hsla(1, 37%, 55%, 1);
+}
+
+.distance .tick text,{
+  fill:hsla(1, 37%, 55%, 1);
+  text-anchor: start;
+}
+
+.distance .tick line, .distance path, .distance .focus circle{
+  stroke:hsla(1, 37%, 55%, 1);
+}
+
+.pace .tick text {
+  fill: hsla(156, 37%, 55%, 1);
+  text-anchor: start;
+}
+
+.pace .tick line, .pace path, .pace .focus circle{
+  stroke: hsla(156, 37%, 55%, 1);
+}
+
+.duration path, .duration .focus circle{
+  stroke: #DDF;
+}
+
+tr td:nth-child(2){
+  text-align: right;
+}
+
+.mile rect{
+  opacity: .75;
+}
+
+rect.active{
+    stroke: #CC223D;
+}
+
+.menu{
+	z-index: 100;
+	width: 0;
+	height:0;
+	position: fixed;
+	top: 0;
+	right: 0;
+	background-color: rgba(16,16,16,.72);
+	transition: 0.3s;
+  color: hsla(0, 100%, 100%, 0.89);
+}
+
+.menuTitle
+{
+	text-align:center;
+	font-family: serif;
+	font-size: 45px;
+	margin-bottom: 20px;
+}
+
+.menu.open{
+	width: 100%;
+	height: 100%;
+	padding-top:20px;
+}
+
+.dataViews{
+  text-align:center;
+}
+
+.dataView h1{
+  padding: 20px 0;
+}
+
+.dataView.mile h1{
+  background-color: hsla(156, 37%, 55%, 1);
+}
+
+.dataView.pace h1{
+  background-color: hsla(1, 37%, 55%, 1);
+}
+
+.dataView.trends h1{
+  background-color: #DDF;
+}
+
+.dataView.mileLines h1{
+  background-color: #FFA2A1;
+}
+
+.button {
+	position: fixed;
+	right: 0;
+	top: 0;
+}
+
+.button span {
+	display: block;
+}
+
+.grid-button {
+	padding: 2rem;
+	cursor: pointer;
+	user-select: none;
+}
+
+.grid-button .grid {
+	width: 1rem;
+	height: 1rem;
+	background: #3c4041;
+	color: #3c4041;
+	/* Not in use when the colors are specified below */
+	transition: 0.3s;
+}
+
+.close{
+  opacity: 0.8;
+}
+
+.close:hover{
+  opacity: 1;
+}
+
+.grid-button.close .grid {
+	-webkit-transform: rotate3d(0, 0, 1, -45deg) scale3d(0.8, 0.8, 0.8);
+	transform: rotate3d(0, 0, 1, -45deg) scale3d(0.8, 0.8, 0.8);
+}
+
+.grid-button.rearrange .grid {
+	box-shadow: -1.25rem -1.25rem, 0 -1.25rem, 1.25rem -1.25rem, -1.25rem 0, 1.25rem 0, -1.25rem 1.25rem, 0 1.25rem, 1.25rem 1.25rem;
+}
+
+.grid-button.rearrange.close .grid {
+	box-shadow: 0 -1rem, 0 -2rem, 1rem 0, -2rem 0, 2rem 0, -1rem 0, 0 2rem, 0 1rem;
+}
+
+.d3-tip, .focus {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+.paceTip{
+  text-align: center;
+}
+
+.selectionArea{
+  fill: rgba(200,200,200,.72);
+}
+
+.selectedTimes
+{
+  fill: rgba(255,255,255, 1);
+}
+
+.runTip a{
+  color: #FFF;
+}
+
+.runTip.selected, .runTip:hover, .runTip:hover a, .runTip.selected a{
+  color: hsla(1, 37%, 55%, 1);
+}
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+.focus text{
+  fill: #111;
+}
+
+.focus rect{
+  fill: rgba(0, 0, 0, 0.8);
+}
+
+.focus circle {
+  fill: none;
+  stroke: pink;
+}
+
+.axis .tick line{
+  opacity: .25;
+}
+
+.table{
+  margin-bottom: 0;
+}
+
+.regression
+{
+  stroke: #DDF;
+}
