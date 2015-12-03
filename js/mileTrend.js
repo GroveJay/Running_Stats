@@ -311,8 +311,6 @@ function MileSplitsPaceTrend()
         d3.selectAll('.splitRectangle').classed("active", false).transition().duration(100).attr('stroke-width', 0);
         ClickSplit(d);
       });
-
-    
     
     this.svg.append("g")
       .attr('class', "selection");

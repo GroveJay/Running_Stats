@@ -2,6 +2,8 @@ var targetPace = 423.664122
 var startDate = "15-07-03"
 var stravaUrl = "https://www.strava.com/activities/"
 
+var originalData;
+
 function secondsToString (seconds){
   var output = "";
   var hours = Math.floor(seconds / 3600);
@@ -203,20 +205,58 @@ var svg = d3.select("#graph").append("svg")
 setBaseDimensions();
 
 $.getJSON("./js/data.json", function(){}).done(function(data){ 
-  runData = data;
+  data.forEach(function(d){
+    d.date = parseDate(d.date);
+  })
+	originalData = data;
 
-	runData = runData.filter(function(a){
-    return parseDate(a.date) > parseDate(startDate);
+	runData = originalData.filter(function(a){
+    return a.date > parseDate(startDate);
   });
+
+  parseData(runData);
+
+  dataGraphs.mile = new MileSplitsPaceTrend();
+  dataGraphs.pace = new DistancePaceTrend();
+  dataGraphs.trends = new RunTrends();
+
+  toggleMenu();
+});
+
+function FilterDisplayData()
+{
+	runData = originalData.filter(function(a){
+    return (a.date > $('#startDate').data("DateTimePicker").date()) &&
+			(a.date < $('#endDate').data("DateTimePicker").date())
+  });
+	parseData(runData);
 	
-	runData = runData.sort(function(a, b){
-		return (a.date < b.date) ? -1 : 1 ;
-	})
-	
+	dataGraphs.mile = new MileSplitsPaceTrend();
+  dataGraphs.pace = new DistancePaceTrend();
+  dataGraphs.trends = new RunTrends();
+}
+
+/*miles.forEach(function(d) {
+  d.sort(function(a, b) { return a.pace - b.pace; });
+   var y0 = 0;
+   d.forEach(function(s) {
+    s.y0 = y0;
+    s.y1 = y0 += s.count;
+   });
+   d.forEach(function(s) 
+   {
+    s.y0 /= y0; s.y1 /= y0; 
+   });
+});*/
+
+function parseData(runData)
+{
+  runData = runData.sort(function(a, b){
+    return (a.date < b.date) ? -1 : 1 ;
+  })
+  
   maxDistance = d3.max(runData.map(function(a) { return a.distance; }));
   maxDuration = d3.max(runData.map(function(a){ return a.duration }));
-
-  
 
   maxSplitPace = d3.max(runData.map(function(a)
   { 
@@ -225,6 +265,8 @@ $.getJSON("./js/data.json", function(){}).done(function(data){
 
   minPace = d3.min(runData.map(function(a){ return a.pace }))
 
+	miles = []
+	allSplits = []
   for (var i = 0; i < maxDistance; i++)
   {
       miles.push([]);
@@ -234,7 +276,11 @@ $.getJSON("./js/data.json", function(){}).done(function(data){
   {
     run.pace = Math.round(run.pace);
     averagePace += run.pace;
-    run.date = parseDate(run.date);
+		if (!(run.date instanceof Date))
+		{
+			run.date = parseDate(run.date);		
+		}
+  
     run.splits = run.splits.filter(function (s, k){
         return s.distance > 0.4;
     });
@@ -265,29 +311,27 @@ $.getJSON("./js/data.json", function(){}).done(function(data){
   }));
 
   averagePace = averagePace / runData.length;
-
-  dataGraphs.mile = new MileSplitsPaceTrend();
-  dataGraphs.pace = new DistancePaceTrend();
-  dataGraphs.trends = new RunTrends();
-  //dataGraphs.mileLines = new MileLines();
-
-  toggleMenu();
-});
-
-/*miles.forEach(function(d) {
-  d.sort(function(a, b) { return a.pace - b.pace; });
-   var y0 = 0;
-   d.forEach(function(s) {
-    s.y0 = y0;
-    s.y1 = y0 += s.count;
-   });
-   d.forEach(function(s) 
-   {
-    s.y0 /= y0; s.y1 /= y0; 
-   });
-});*/
+}
 
 d3.select(window).on('resize', resize);
+
+$('#startDate').datetimepicker({
+	format: "MM/DD/YYYY",
+	maxDate: Date.now(),
+	defaultDate: parseDate("15-07-03")
+});
+$('#endDate').datetimepicker({
+		format: "MM/DD/YYYY",
+		maxDate: Date.now(),
+		defaultDate: Date.now(),
+		useCurrent: false //Important! See issue #1075
+});
+$("#startDate").on("dp.change", function (e) {
+		$('#endDate').data("DateTimePicker").minDate(e.date);
+});
+$("#endDate").on("dp.change", function (e) {
+		$('#startDate').data("DateTimePicker").maxDate(e.date);
+});
 
 function resize()
 {
@@ -300,7 +344,8 @@ $('.button').click(function(){
 });
 
 $('.dataView').click(function(){
-  $("#graph svg").empty();
+	FilterDisplayData();
+	$("#graph svg").empty();
 	selectedData = $(this).attr("data");
   dataGraphs[selectedData].render(svg);
   dataGraphs[selectedData].resize();

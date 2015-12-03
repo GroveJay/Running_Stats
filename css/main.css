@@ -122,7 +122,10 @@ rect.active{
 	right: 0;
 	background-color: rgba(16,16,16,.72);
 	transition: 0.3s;
-  color: hsla(0, 100%, 100%, 0.89);
+}
+
+.menu h1, .menu h2, .menu .dataViews{
+	color: hsla(0, 100%, 100%, 0.89);
 }
 
 .menuTitle
@@ -209,7 +212,7 @@ rect.active{
 	box-shadow: 0 -1rem, 0 -2rem, 1rem 0, -2rem 0, 2rem 0, -1rem 0, 0 2rem, 0 1rem;
 }
 
-.d3-tip, .focus {
+.d3-tip, .main .focus {
   line-height: 1;
   font-weight: bold;
   padding: 12px;

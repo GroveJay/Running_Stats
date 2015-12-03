@@ -7,6 +7,7 @@
 <title>Running Statistics</title>
 <link rel="stylesheet" href="./css/bootstrap.min.css" media="screen" type="text/css"></style>
 <link rel="stylesheet" href="./css/main.css" media="screen" type="text/css"></style>
+<link rel="stylesheet" href="./css/datepicker.css" media="screen" type="text/css"></style>
 </head>
 <body>
 	<div id="graph">
@@ -15,7 +16,7 @@
 		<div class="button grid-button rearrange">
 				<span class="grid"></span>
 		</div>
-		<h1 class="menuTitle">Trend Views</h1>
+		<h1 class="menuTitle">Views</h1>
 		<div class="dataViews container">
 			<div class="dataView col-md-4 col-sm-12 mile" data="mile">
 				<h1>
@@ -29,8 +30,27 @@
 			</div>
 			<div class="dataView col-md-4 col-sm-12 trends" data="trends">
 				<h1>
-					Time	<br> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+					Timeline	<br> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
 				</h1>
+			</div>
+		</div>
+		<h2 class="menuTitle">Data Filter</h2>
+		<div class="container">
+			<div class="col-md-6 col-sm-12">
+				<div class='input-group date' id='startDate'>
+					<input type='text' class="form-control" />
+					<span class="input-group-addon">
+							<span class="glyphicon glyphicon-calendar"></span>
+					</span>
+				</div>
+			</div>
+			<div class="col-md-6 col-sm-12">
+				<div class='input-group date' id='endDate'>
+					<input type='text' class="form-control" />
+					<span class="input-group-addon">
+							<span class="glyphicon glyphicon-calendar"></span>
+					</span>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -55,7 +75,9 @@
 		</div>
 	</div>
 	<script src="https://codepen.io/assets/libs/fullpage/jquery.js"></script>
+	<script src="./js/moment.js"></script>
 	<script src="./js/bootstrap.min.js"></script>
+	<script src="./js/bootstrap.datepicker.js"></script>
 	<script src="./js/d3.min.js"></script>
 	<script src="./js/d3.tip.js"></script>
 	<script src="./js/regression.js"></script>
