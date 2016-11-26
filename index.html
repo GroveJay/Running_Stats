@@ -4,39 +4,78 @@
 <meta>
 </meta>
 <meta charset="UTF-8">
-<title>Running Statistics</title>
-<link rel="stylesheet" href="./css/bootstrap.min.css" media="screen" type="text/css"></style>
+<title>Running Statistics EC2</title>
+<link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css" media="screen" type="text/css"></style>
 <link rel="stylesheet" href="./css/main.css" media="screen" type="text/css"></style>
-<link rel="stylesheet" href="./css/datepicker.css" media="screen" type="text/css"></style>
+<link rel="stylesheet" href="../lib/bootstrap/css/datepicker.css" media="screen" type="text/css"></style>
+<link rel="stylesheet" href="../lib/css/font-awesome.min.css" media="screen" type="text/css"></style>
+
 </head>
 <body>
 	<div id="graph">
 	</div>
 	<div class="menu">
-		<div class="button grid-button rearrange">
+		<div class="button grid-button rearrange spinning">
 				<span class="grid"></span>
 		</div>
 		<h1 class="menuTitle">Views</h1>
-		<div class="dataViews container">
-			<div class="dataView col-md-4 col-sm-12 mile" data="mile">
-				<h1>
-					Mile Splits	<br> <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
-				</h1>
-			</div>
-			<div class="dataView col-md-4 col-sm-12 pace" data="pace">
-				<h1>
-					Duration v. Distance	<br> <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
-				</h1>
-			</div>
-			<div class="dataView col-md-4 col-sm-12 trends" data="trends">
-				<h1>
-					Timeline	<br> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-				</h1>
+		<div class="container text-center">
+			<h2 class="subMenuTitle">Activity Type</h2>
+			<div class="btn-group" data-toggle="buttons">
+				<label class="btn btn-primary active">
+					<input type="radio" name="options" id="Run" autocomplete="off" checked><i class="fa fa-street-view" aria-hidden="true"></i>
+				</label>
+			  	<label class="btn btn-primary">
+			    	<input type="radio" name="options" id="Ride" autocomplete="off"><i class="fa fa-bicycle" aria-hidden="true"></i>
+			  	</label>
 			</div>
 		</div>
-		<h2 class="menuTitle">Data Filter</h2>
-		<div class="container">
-			<div class="col-md-6 col-sm-12">
+		<div class="dataViews container">
+			<div class="row">
+				<div class="dataView col-md-4 mile" data="mile">
+					<h2>
+						Mile Splits	<br> <i class="fa fa-bar-chart" aria-hidden="true"></i>
+					</h2>
+				</div>
+				<div class="dataView col-md-4 pace" data="pace">
+					<h2>
+						Duration v. Distance	<br> <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
+					</h2>
+				</div>
+				<div class="dataView col-md-4 trends" data="trends">
+					<h2>
+						Timeline	<br> <i class="fa fa-area-chart" aria-hidden="true"></i>
+					</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="dataView col-md-4 circles" data="circles">
+					<h2>
+						Time Circles	<br> <span class="glyphicon glyphicon-record" aria-hidden="true"></span>
+					</h2>
+				</div>
+				<div class="dataView col-md-4 paths" data="paths">
+					<h2>
+						Paths	<br> <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+					</h2>
+				</div>
+				<div class="dataView col-md-4 calendar" data="calendar">
+					<h2>
+						Calendar	<br> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+					</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="dataView col-md-4 cumulative" data="cumulative">
+					<h2>
+						Cumulative	<br> <i class="fa fa-line-chart" aria-hidden="true"></i>
+					</h2>
+				</div>
+			</div>
+		</div>
+		<h2 class="menuTitle">Date Filter</h2>
+		<div class="container dateFilter">
+			<div class="col-md-6 col-sm-6">
 				<div class='input-group date' id='startDate'>
 					<input type='text' class="form-control" />
 					<span class="input-group-addon">
@@ -44,7 +83,7 @@
 					</span>
 				</div>
 			</div>
-			<div class="col-md-6 col-sm-12">
+			<div class="col-md-6 col-sm-6">
 				<div class='input-group date' id='endDate'>
 					<input type='text' class="form-control" />
 					<span class="input-group-addon">
@@ -74,16 +113,21 @@
 			</div>
 		</div>
 	</div>
-	<script src="https://codepen.io/assets/libs/fullpage/jquery.js"></script>
-	<script src="./js/moment.js"></script>
-	<script src="./js/bootstrap.min.js"></script>
-	<script src="./js/bootstrap.datepicker.js"></script>
-	<script src="./js/d3.min.js"></script>
-	<script src="./js/d3.tip.js"></script>
-	<script src="./js/regression.js"></script>
+	<script src="../lib/jquery/jquery-1.11.2.js"></script>
+	<script src="../lib/js/moment.js"></script>
+	<script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../lib/bootstrap/js/bootstrap.datepicker.js"></script>
+	<script src="../lib/d3/d3.min.js"></script>
+	<script src="../lib/d3/d3.tip.js"></script>
+	<script src="../lib/js/regression.js"></script>
+	<script src="../lib/js/polyline.js"></script>
 	<script src="./js/main.js"></script>
 	<script src="./js/paceTrend.js"></script>
 	<script src="./js/mileTrend.js"></script>
+	<script src="./js/circles.js"></script>
+	<script src="./js/paths.js"></script>
+	<script src="./js/calendar.js"></script>
+	<script src="./js/cumulative.js"></script>
 	<script src="./js/common.js"></script>
 </body>
 </html>

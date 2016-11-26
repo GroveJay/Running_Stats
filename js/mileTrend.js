@@ -1,7 +1,7 @@
 function MileSplitsPaceTrend()
 {
-  minSplitPace -= minSplitPace % 60;
-  maxSplitPace += 60 - (maxSplitPace % 60);
+  minSplitPace -= 3;
+  maxSplitPace += 10;
 
   this.svgxAxis;
   var splitSelected = false;
@@ -10,11 +10,11 @@ function MileSplitsPaceTrend()
             .rangeRound([0,w])
             .domain([1, Math.ceil(maxDistance)+1]),
       y = d3.scale.linear()
-            .rangeRound([h,3*h/4,h/4,0])
+//            .rangeRound([h,5*h/6,h/6,0])
             .domain(
               [
                 minSplitPace,
-                360,
+                380,
                 440,
                 maxSplitPace
               ])
@@ -197,12 +197,12 @@ function MileSplitsPaceTrend()
   {
     barWidth = xDistanceScaleRound(1) - xDistanceScaleRound(0);
     xDistanceScaleRound.rangeRound([0,w])
-    y.rangeRound([h,3*h/4,h/4,0])
+    y.rangeRound([h,5*h/6,h/6,0])
     yBar.rangeRound([h, 0]),
     xAxis.scale(xDistanceScaleRound)
     yAxis.scale(y)
       .tickSize(-w)
-      .tickValues(d3.range(Math.floor(y.domain()[0]), Math.floor(y.domain()[2]), 60));
+      .tickValues(d3.range(Math.floor(y.domain()[0] - (y.domain()[0] % 60)), Math.floor(y.domain()[2] + (y.domain()[2] % 60)), 60));
   }
   
   this.resize = function()
